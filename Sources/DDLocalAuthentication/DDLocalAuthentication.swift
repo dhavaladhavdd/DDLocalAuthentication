@@ -26,10 +26,6 @@ public class DDLocalAuthentication: DDLocalAuthenticationProtocol {
     
     // MARK: - init
     
-    public init(context: LAContext) {
-        self.context = context
-    }
-    
     public init() { }
     
     public func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool {
@@ -46,8 +42,8 @@ public class DDLocalAuthentication: DDLocalAuthenticationProtocol {
         context = LAContext()
 
         do {
-            let result = try await context.evaluatePolicy(policy, localizedReason: context.localizedReason)
-            return result
+            let isPolicyEvaluated = try await context.evaluatePolicy(policy, localizedReason: localizedReason)
+            return isPolicyEvaluated
         } catch {
             throw error
         }
