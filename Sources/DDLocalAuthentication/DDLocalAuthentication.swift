@@ -24,6 +24,14 @@ public class DDLocalAuthentication: DDLocalAuthenticationProtocol {
     
     private var context: LAContext = LAContext()
     
+    // MARK: - init
+    
+    public init(context: LAContext) {
+        self.context = context
+    }
+    
+    public init() { }
+    
     public func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool {
         
         context.canEvaluatePolicy(policy, error: error)
